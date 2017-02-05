@@ -1,0 +1,969 @@
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;**************************************************************************************
+                      00002 ;                           VOLTAGE LOOKUP TABLE
+                      00003 ;                           .00 ---> 5.00  VOLTS
+                      00004 ;                           8 bit accuracy 10 bit adc
+                      00005 ;
+                      00006 ;       GARTH MADDEN 2017
+                      00007 ;       V 0.1
+                      00008 ;
+                      00009 ;                        MOVLW       OFFSET
+                      00010 ;                        ADDWF       OFFSET
+                      00011 ;
+                      00012 ;
+                      00013 ;
+                      00014 
+                      00015 #include        <p12lf1822.inc>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Nov 17 2016
+                      00005 ;  MPASM PIC12LF1822 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2016 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      01040         LIST
+                      00016 
+                      00017         
+  0000                00018         GLOBAL     ADC_LOOKUP_SECOND
+                      00019 
+                      00020 
+                      00021         CODE
+                      00022         
+0000                  00023 ADC_LOOKUP_SECOND
+                      00024 
+0000   0782           00025     ADDWF       PCL, F
+0001   3430           00026     RETLW       D'48'   ; 0
+0002   3430           00027     RETLW       D'48'   ; 1
+0003   3430           00028     RETLW       D'48'   ; 2
+0004   3430           00029     RETLW       D'48'   ; 3
+0005   3430           00030     RETLW       D'48'   ; 4
+0006   3431           00031     RETLW       D'49'   ; 5
+0007   3431           00032     RETLW       D'49'   ; 6
+0008   3431           00033     RETLW       D'49'   ; 7
+0009   3431           00034     RETLW       D'49'   ; 8
+000A   3431           00035     RETLW       D'49'   ; 9
+000B   3432           00036     RETLW       D'50'   ; 10
+000C   3432           00037     RETLW       D'50'   ; 11
+000D   3432           00038     RETLW       D'50'   ; 12
+000E   3432           00039     RETLW       D'50'   ; 13
+000F   3432           00040     RETLW       D'50'   ; 14
+0010   3433           00041     RETLW       D'51'   ; 15
+0011   3433           00042     RETLW       D'51'   ; 16
+0012   3433           00043     RETLW       D'51'   ; 17
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0013   3433           00044     RETLW       D'51'   ; 18
+0014   3433           00045     RETLW       D'51'   ; 19
+0015   3434           00046     RETLW       D'52'   ; 20
+0016   3434           00047     RETLW       D'52'   ; 21
+0017   3434           00048     RETLW       D'52'   ; 22
+0018   3434           00049     RETLW       D'52'   ; 23
+0019   3434           00050     RETLW       D'52'   ; 24
+001A   3434           00051     RETLW       D'52'   ; 25
+001B   3435           00052     RETLW       D'53'   ; 26
+001C   3435           00053     RETLW       D'53'   ; 27
+001D   3435           00054     RETLW       D'53'   ; 28
+001E   3435           00055     RETLW       D'53'   ; 29
+001F   3435           00056     RETLW       D'53'   ; 30
+0020   3436           00057     RETLW       D'54'   ; 31
+0021   3436           00058     RETLW       D'54'   ; 32
+0022   3436           00059     RETLW       D'54'   ; 33
+0023   3436           00060     RETLW       D'54'   ; 34
+0024   3436           00061     RETLW       D'54'   ; 35
+0025   3437           00062     RETLW       D'55'   ; 36
+0026   3437           00063     RETLW       D'55'   ; 37
+0027   3437           00064     RETLW       D'55'   ; 38
+0028   3437           00065     RETLW       D'55'   ; 39
+0029   3437           00066     RETLW       D'55'   ; 40
+002A   3438           00067     RETLW       D'56'   ; 41
+002B   3438           00068     RETLW       D'56'   ; 42
+002C   3438           00069     RETLW       D'56'   ; 43
+002D   3438           00070     RETLW       D'56'   ; 44
+002E   3438           00071     RETLW       D'56'   ; 45
+002F   3439           00072     RETLW       D'57'   ; 46
+0030   3439           00073     RETLW       D'57'   ; 47
+0031   3439           00074     RETLW       D'57'   ; D'48'
+0032   3439           00075     RETLW       D'57'   ; D'49'
+0033   3439           00076     RETLW       D'57'   ; D'50'
+0034   3430           00077     RETLW       D'48'   ; D'51'
+0035   3430           00078     RETLW       D'48'   ; D'52'
+0036   3430           00079     RETLW       D'48'   ; D'53'
+0037   3430           00080     RETLW       D'48'   ; D'54'
+0038   3430           00081     RETLW       D'48'   ; D'55'
+0039   3431           00082     RETLW       D'49'   ; D'56'
+003A   3431           00083     RETLW       D'49'   ; D'57'
+003B   3431           00084     RETLW       D'49'   ; D'58'
+003C   3431           00085     RETLW       D'49'   ; D'59'
+003D   3431           00086     RETLW       D'49'   ; 60
+003E   3432           00087     RETLW       D'50'   ; 61
+003F   3432           00088     RETLW       D'50'   ; 62
+0040   3432           00089     RETLW       D'50'   ; 63
+0041   3432           00090     RETLW       D'50'   ; 64
+0042   3432           00091     RETLW       D'50'   ; 65
+0043   3433           00092     RETLW       D'51'   ; 66
+0044   3433           00093     RETLW       D'51'   ; 67
+0045   3433           00094     RETLW       D'51'   ; 68
+0046   3433           00095     RETLW       D'51'   ; 69
+0047   3433           00096     RETLW       D'51'   ; 70
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0048   3434           00097     RETLW       D'52'   ; 71
+0049   3434           00098     RETLW       D'52'   ; 72
+004A   3434           00099     RETLW       D'52'   ; 73
+004B   3434           00100     RETLW       D'52'   ; 74
+004C   3434           00101     RETLW       D'52'   ; 75
+004D   3435           00102     RETLW       D'53'   ; 76
+004E   3435           00103     RETLW       D'53'   ; 77
+004F   3435           00104     RETLW       D'53'   ; 78
+0050   3435           00105     RETLW       D'53'   ; 79
+0051   3435           00106     RETLW       D'53'   ; 80
+0052   3436           00107     RETLW       D'54'   ; 81
+0053   3436           00108     RETLW       D'54'   ; 82
+0054   3436           00109     RETLW       D'54'   ; 83
+0055   3436           00110     RETLW       D'54'   ; 84
+0056   3436           00111     RETLW       D'54'   ; 85
+0057   3437           00112     RETLW       D'55'   ; 86
+0058   3437           00113     RETLW       D'55'   ; 87
+0059   3437           00114     RETLW       D'55'   ; 88
+005A   3437           00115     RETLW       D'55'   ; 89
+005B   3437           00116     RETLW       D'55'   ; 90
+005C   3438           00117     RETLW       D'56'   ; 91
+005D   3438           00118     RETLW       D'56'   ; 92
+005E   3438           00119     RETLW       D'56'   ; 93
+005F   3438           00120     RETLW       D'56'   ; 94
+0060   3438           00121     RETLW       D'56'   ; 95
+0061   3439           00122     RETLW       D'57'   ; 96
+0062   3439           00123     RETLW       D'57'   ; 97
+0063   3439           00124     RETLW       D'57'   ; 98
+0064   3439           00125     RETLW       D'57'   ; 99
+0065   3439           00126     RETLW       D'57'   ; 100
+0066   3430           00127     RETLW       D'48'   ; 101
+0067   3430           00128     RETLW       D'48'   ; 102
+0068   3430           00129     RETLW       D'48'   ; 103
+0069   3430           00130     RETLW       D'48'   ; 104
+006A   3430           00131     RETLW       D'48'   ; 105
+006B   3430           00132     RETLW       D'48'   ; 106
+006C   3431           00133     RETLW       D'49'   ; 107
+006D   3431           00134     RETLW       D'49'   ; 108
+006E   3431           00135     RETLW       D'49'   ; 109
+006F   3431           00136     RETLW       D'49'   ; 110
+0070   3431           00137     RETLW       D'49'   ; 111
+0071   3431           00138     RETLW       D'49'   ; 112
+0072   3432           00139     RETLW       D'50'   ; 113
+0073   3432           00140     RETLW       D'50'   ; 114
+0074   3432           00141     RETLW       D'50'   ; 115
+0075   3432           00142     RETLW       D'50'   ; 116
+0076   3433           00143     RETLW       D'51'   ; 117
+0077   3433           00144     RETLW       D'51'   ; 118
+0078   3433           00145     RETLW       D'51'   ; 119
+0079   3433           00146     RETLW       D'51'   ; 120
+007A   3433           00147     RETLW       D'51'   ; 121
+007B   3434           00148     RETLW       D'52'   ; 122
+007C   3434           00149     RETLW       D'52'   ; 123
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+007D   3434           00150     RETLW       D'52'   ; 124
+007E   3434           00151     RETLW       D'52'   ; 125
+007F   3434           00152     RETLW       D'52'   ; 126
+0080   3435           00153     RETLW       D'53'   ; 127
+0081   3435           00154     RETLW       D'53'   ; 128
+0082   3435           00155     RETLW       D'53'   ; 129
+0083   3435           00156     RETLW       D'53'   ; 130
+0084   3435           00157     RETLW       D'53'   ; 131
+0085   3436           00158     RETLW       D'54'   ; 132
+0086   3436           00159     RETLW       D'54'   ; 133
+0087   3436           00160     RETLW       D'54'   ; 134
+0088   3436           00161     RETLW       D'54'   ; 135
+0089   3436           00162     RETLW       D'54'   ; 136
+008A   3437           00163     RETLW       D'55'   ; 137
+008B   3437           00164     RETLW       D'55'   ; 138
+008C   3437           00165     RETLW       D'55'   ; 139
+008D   3437           00166     RETLW       D'55'   ; 140
+008E   3437           00167     RETLW       D'55'   ; 141
+008F   3438           00168     RETLW       D'56'   ; 142
+0090   3438           00169     RETLW       D'56'   ; 143
+0091   3438           00170     RETLW       D'56'   ; 144
+0092   3438           00171     RETLW       D'56'   ; 145
+0093   3438           00172     RETLW       D'56'   ; 146
+0094   3439           00173     RETLW       D'57'   ; 147
+0095   3439           00174     RETLW       D'57'   ; 1D'48'
+0096   3439           00175     RETLW       D'57'   ; 1D'49'
+0097   3439           00176     RETLW       D'57'   ; 1D'50'
+0098   3439           00177     RETLW       D'57'   ; 1D'51'
+0099   3430           00178     RETLW       D'48'   ; 1D'52'
+009A   3430           00179     RETLW       D'48'   ; 1D'53'
+009B   3430           00180     RETLW       D'48'   ; 1D'54'
+009C   3430           00181     RETLW       D'48'   ; 1D'55'
+009D   3430           00182     RETLW       D'48'   ; 1D'56'
+009E   3431           00183     RETLW       D'49'   ; 1D'57'
+009F   3431           00184     RETLW       D'49'   ; 1D'58'
+00A0   3431           00185     RETLW       D'49'   ; 1D'59'
+00A1   3431           00186     RETLW       D'49'   ; 160
+00A2   3431           00187     RETLW       D'49'   ; 161
+00A3   3432           00188     RETLW       D'50'   ; 162
+00A4   3432           00189     RETLW       D'50'   ; 163
+00A5   3432           00190     RETLW       D'50'   ; 164
+00A6   3432           00191     RETLW       D'50'   ; 165
+00A7   3432           00192     RETLW       D'50'   ; 166
+00A8   3433           00193     RETLW       D'51'   ; 167
+00A9   3433           00194     RETLW       D'51'   ; 168
+00AA   3433           00195     RETLW       D'51'   ; 169
+00AB   3433           00196     RETLW       D'51'   ; 170
+00AC   3433           00197     RETLW       D'51'   ; 171
+00AD   3434           00198     RETLW       D'52'   ; 172
+00AE   3434           00199     RETLW       D'52'   ; 173
+00AF   3434           00200     RETLW       D'52'   ; 174
+00B0   3434           00201     RETLW       D'52'   ; 175
+00B1   3434           00202     RETLW       D'52'   ; 176
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00B2   3435           00203     RETLW       D'53'   ; 177
+00B3   3435           00204     RETLW       D'53'   ; 178
+00B4   3435           00205     RETLW       D'53'   ; 179
+00B5   3435           00206     RETLW       D'53'   ; 180
+00B6   3435           00207     RETLW       D'53'   ; 181
+00B7   3436           00208     RETLW       D'54'   ; 182
+00B8   3436           00209     RETLW       D'54'   ; 183
+00B9   3436           00210     RETLW       D'54'   ; 184
+00BA   3436           00211     RETLW       D'54'   ; 185
+00BB   3436           00212     RETLW       D'54'   ; 186
+00BC   3437           00213     RETLW       D'55'   ; 187
+00BD   3437           00214     RETLW       D'55'   ; 188
+00BE   3437           00215     RETLW       D'55'   ; 189
+00BF   3437           00216     RETLW       D'55'   ; 190
+00C0   3437           00217     RETLW       D'55'   ; 191
+00C1   3437           00218     RETLW       D'55'   ; 192
+00C2   3438           00219     RETLW       D'56'   ; 193
+00C3   3438           00220     RETLW       D'56'   ; 194
+00C4   3438           00221     RETLW       D'56'   ; 195
+00C5   3438           00222     RETLW       D'56'   ; 196
+00C6   3438           00223     RETLW       D'56'   ; 197
+00C7   3439           00224     RETLW       D'57'   ; 198
+00C8   3439           00225     RETLW       D'57'   ; 199
+00C9   3439           00226     RETLW       D'57'   ; 200
+00CA   3439           00227     RETLW       D'57'   ; 201
+00CB   3439           00228     RETLW       D'57'   ; 202
+00CC   3430           00229     RETLW       D'48'   ; 203
+00CD   3430           00230     RETLW       D'48'   ; 204
+00CE   3430           00231     RETLW       D'48'   ; 205
+00CF   3430           00232     RETLW       D'48'   ; 206
+00D0   3430           00233     RETLW       D'48'   ; 207
+00D1   3431           00234     RETLW       D'49'   ; 208
+00D2   3431           00235     RETLW       D'49'   ; 209
+00D3   3431           00236     RETLW       D'49'   ; 210
+00D4   3431           00237     RETLW       D'49'   ; 211
+00D5   3431           00238     RETLW       D'49'   ; 212
+00D6   3432           00239     RETLW       D'50'   ; 213
+00D7   3432           00240     RETLW       D'50'   ; 214
+00D8   3432           00241     RETLW       D'50'   ; 215
+00D9   3432           00242     RETLW       D'50'   ; 216
+00DA   3432           00243     RETLW       D'50'   ; 217
+00DB   3433           00244     RETLW       D'51'   ; 218
+00DC   3433           00245     RETLW       D'51'   ; 219
+00DD   3433           00246     RETLW       D'51'   ; 220
+00DE   3433           00247     RETLW       D'51'   ; 221
+00DF   3433           00248     RETLW       D'51'   ; 222
+00E0   3434           00249     RETLW       D'52'   ; 223
+00E1   3434           00250     RETLW       D'52'   ; 224
+00E2   3434           00251     RETLW       D'52'   ; 225
+00E3   3434           00252     RETLW       D'52'   ; 226
+00E4   3434           00253     RETLW       D'52'   ; 227
+00E5   3435           00254     RETLW       D'53'   ; 228
+00E6   3435           00255     RETLW       D'53'   ; 229
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00E7   3435           00256     RETLW       D'53'   ; 230
+00E8   3435           00257     RETLW       D'53'   ; 231
+00E9   3435           00258     RETLW       D'53'   ; 232
+00EA   3436           00259     RETLW       D'54'   ; 233
+00EB   3436           00260     RETLW       D'54'   ; 234
+00EC   3436           00261     RETLW       D'54'   ; 235
+00ED   3436           00262     RETLW       D'54'   ; 236
+00EE   3436           00263     RETLW       D'54'   ; 237
+00EF   3437           00264     RETLW       D'55'   ; 238
+00F0   3437           00265     RETLW       D'55'   ; 239
+00F1   3437           00266     RETLW       D'55'   ; 240
+00F2   3437           00267     RETLW       D'55'   ; 241
+00F3   3437           00268     RETLW       D'55'   ; 242
+00F4   3438           00269     RETLW       D'56'   ; 243
+00F5   3438           00270     RETLW       D'56'   ; 244
+00F6   3438           00271     RETLW       D'56'   ; 245
+00F7   3438           00272     RETLW       D'56'   ; 246
+00F8   3438           00273     RETLW       D'56'   ; 247
+00F9   3439           00274     RETLW       D'57'   ; 2D'48'
+00FA   3439           00275     RETLW       D'57'   ; 2D'49'
+00FB   3439           00276     RETLW       D'57'   ; 2D'50'
+00FC   3439           00277     RETLW       D'57'   ; 2D'51'
+00FD   3439           00278     RETLW       D'57'   ; 2D'52'
+00FE   3430           00279     RETLW       D'48'   ; 2D'53'
+00FF   3430           00280     RETLW       D'48'   ; 2D'54'
+0100   3430           00281     RETLW       D'48'   ; 2D'55'
+                      00282     
+                      00283     END
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ABDEN                             00000000
+ABDOVF                            00000007
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ACKTIM                            00000007
+ADCON0                            0000009D
+ADCON1                            0000009E
+ADCS0                             00000004
+ADCS1                             00000005
+ADCS2                             00000006
+ADC_LOOKUP_SECOND                 00000000
+ADDEN                             00000003
+ADFM                              00000007
+ADFVR0                            00000000
+ADFVR1                            00000001
+ADGO                              00000001
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADPREF0                           00000000
+ADPREF1                           00000001
+ADRES                             0000009B
+ADRESH                            0000009C
+ADRESL                            0000009B
+AHEN                              00000001
+AN0                               00000000
+AN1                               00000001
+AN2                               00000002
+AN3                               00000004
+ANSA0                             00000000
+ANSA1                             00000001
+ANSA2                             00000002
+ANSA4                             00000004
+ANSELA                            0000018C
+APFCON                            0000011D
+APFCON0                           0000011D
+BAUDCON                           0000019F
+BCL1IE                            00000003
+BCL1IF                            00000003
+BF                                00000000
+BOEN                              00000004
+BORCON                            00000116
+BORRDY                            00000000
+BRG16                             00000003
+BRGH                              00000002
+BSR                               00000008
+BSR0                              00000000
+BSR1                              00000001
+BSR2                              00000002
+BSR3                              00000003
+BSR4                              00000004
+BSR_SHAD                          00000FE6
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+C1HYS                             00000001
+C1IE                              00000005
+C1IF                              00000005
+C1IN0N                            00000001
+C1IN1N                            00000004
+C1INP                             00000000
+C1INTN                            00000006
+C1INTP                            00000007
+C1NCH0                            00000000
+C1OE                              00000005
+C1ON                              00000007
+C1OUT_CM1CON0                     00000006
+C1OUT_PORTA                       00000002
+C1PCH0                            00000004
+C1PCH1                            00000005
+C1POL                             00000004
+C1SP                              00000002
+C1SYNC                            00000000
+CCP1AS                            00000295
+CCP1AS0                           00000004
+CCP1AS1                           00000005
+CCP1AS2                           00000006
+CCP1ASE                           00000007
+CCP1CON                           00000293
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1SEL                           00000000
+CCPR1                             00000291
+CCPR1H                            00000292
+CCPR1L                            00000291
+CDAFVR0                           00000002
+CDAFVR1                           00000003
+CFGS                              00000006
+CHS0                              00000002
+CHS1                              00000003
+CHS2                              00000004
+CHS3                              00000005
+CHS4                              00000006
+CKE                               00000006
+CKP                               00000004
+CLKIN                             00000005
+CLKOUT                            00000004
+CLKR                              00000004
+CLKRCON                           0000039A
+CLKRDC0                           00000003
+CLKRDC1                           00000004
+CLKRDIV0                          00000000
+CLKRDIV1                          00000001
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CLKRDIV2                          00000002
+CLKREN                            00000007
+CLKROE                            00000006
+CLKRSLR                           00000005
+CM1CON0                           00000111
+CM1CON1                           00000112
+CMOUT                             00000115
+CPS0                              00000000
+CPS1                              00000001
+CPS2                              00000002
+CPS3                              00000004
+CPSCH0                            00000000
+CPSCH1                            00000001
+CPSCON0                           0000001E
+CPSCON1                           0000001F
+CPSON                             00000007
+CPSOUT                            00000001
+CPSRM                             00000006
+CPSRNG0                           00000002
+CPSRNG1                           00000003
+CREN                              00000004
+CSRC                              00000007
+C_SHAD                            00000000
+DACCON0                           00000118
+DACCON1                           00000119
+DACEN                             00000007
+DACLPS                            00000006
+DACOE                             00000005
+DACOUT                            00000000
+DACPSS0                           00000002
+DACPSS1                           00000003
+DACR0                             00000000
+DACR1                             00000001
+DACR2                             00000002
+DACR3                             00000003
+DACR4                             00000004
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC_SHAD                           00000001
+DHEN                              00000000
+D_NOT_A                           00000005
+ECCP1AS                           00000295
+EEADR                             00000191
+EEADRH                            00000192
+EEADRL                            00000191
+EECON1                            00000195
+EECON2                            00000196
+EEDAT                             00000193
+EEDATH                            00000194
+EEDATL                            00000193
+EEIE                              00000004
+EEIF                              00000004
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FLT0                              00000002
+FREE                              00000004
+FSR0                              00000004
+FSR0H                             00000005
+FSR0H_SHAD                        00000FE9
+FSR0L                             00000004
+FSR0L_SHAD                        00000FE8
+FSR1                              00000006
+FSR1H                             00000007
+FSR1H_SHAD                        00000FEB
+FSR1L                             00000006
+FSR1L_SHAD                        00000FEA
+FVRCON                            00000117
+FVREN                             00000007
+FVRRDY                            00000006
+GCEN                              00000007
+GIE                               00000007
+GO                                00000001
+GO_NOT_DONE                       00000001
+HFIOFL                            00000003
+HFIOFR                            00000004
+HFIOFS                            00000000
+INDF0                             00000000
+INDF1                             00000001
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IOCAF                             00000393
+IOCAF0                            00000000
+IOCAF1                            00000001
+IOCAF2                            00000002
+IOCAF3                            00000003
+IOCAF4                            00000004
+IOCAF5                            00000005
+IOCAN                             00000392
+IOCAN0                            00000000
+IOCAN1                            00000001
+IOCAN2                            00000002
+IOCAN3                            00000003
+IOCAN4                            00000004
+IOCAN5                            00000005
+IOCAP                             00000391
+IOCAP0                            00000000
+IOCAP1                            00000001
+IOCAP2                            00000002
+IOCAP3                            00000003
+IOCAP4                            00000004
+IOCAP5                            00000005
+IOCIE                             00000003
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+IOCIF                             00000000
+IRCF0                             00000003
+IRCF1                             00000004
+IRCF2                             00000005
+IRCF3                             00000006
+LATA                              0000010C
+LATA0                             00000000
+LATA1                             00000001
+LATA2                             00000002
+LATA4                             00000004
+LATA5                             00000005
+LFIOFR                            00000001
+LWLO                              00000005
+MC1OUT                            00000000
+MDBIT                             00000000
+MDCARH                            0000039F
+MDCARL                            0000039E
+MDCH0                             00000000
+MDCH1                             00000001
+MDCH2                             00000002
+MDCH3                             00000003
+MDCHODIS                          00000007
+MDCHPOL                           00000006
+MDCHSYNC                          00000005
+MDCIN1                            00000002
+MDCIN2                            00000004
+MDCL0                             00000000
+MDCL1                             00000001
+MDCL2                             00000002
+MDCL3                             00000003
+MDCLODIS                          00000007
+MDCLPOL                           00000006
+MDCLSYNC                          00000005
+MDCON                             0000039C
+MDEN                              00000007
+MDMIN                             00000001
+MDMS0                             00000000
+MDMS1                             00000001
+MDMS2                             00000002
+MDMS3                             00000003
+MDMSODIS                          00000007
+MDOE                              00000006
+MDOPOL                            00000004
+MDOUT_MDCON                       00000003
+MDOUT_PORTA                       00000000
+MDSLR                             00000005
+MDSRC                             0000039D
+MFIOFR                            00000002
+NOT_BOR                           00000000
+NOT_DONE                          00000001
+NOT_MCLR                          00000003
+NOT_PD                            00000003
+NOT_POR                           00000001
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_RI                            00000002
+NOT_RMCLR                         00000003
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_WPUEN                         00000007
+OERR                              00000001
+OPTION_REG                        00000095
+OSC1                              00000005
+OSC2                              00000004
+OSCCON                            00000099
+OSCSTAT                           0000009A
+OSCTUNE                           00000098
+OSFIE                             00000007
+OSFIF                             00000007
+OSTS                              00000005
+P                                 00000004
+P1BSEL                            00000001
+P1DC0                             00000000
+P1DC1                             00000001
+P1DC2                             00000002
+P1DC3                             00000003
+P1DC4                             00000004
+P1DC5                             00000005
+P1DC6                             00000006
+P1M0                              00000006
+P1M1                              00000007
+P1RSEN                            00000007
+PCIE                              00000006
+PCL                               00000002
+PCLATH                            0000000A
+PCLATH_SHAD                       00000FE7
+PCON                              00000096
+PEIE                              00000006
+PEN                               00000002
+PIE1                              00000091
+PIE2                              00000092
+PIR1                              00000011
+PIR2                              00000012
+PLLR                              00000006
+PORTA                             0000000C
+PR2                               0000001B
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSS1AC0                           00000002
+PSS1AC1                           00000003
+PSS1BD0                           00000000
+PSS1BD1                           00000001
+PSTR1CON                          00000296
+PWM1CON                           00000294
+RA0                               00000000
+RA1                               00000001
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             00000199
+RCSTA                             0000019D
+RD                                00000000
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+RXDTSEL                           00000007
+R_NOT_W                           00000002
+S                                 00000003
+SBCDE                             00000002
+SBOREN                            00000007
+SCIE                              00000005
+SCK                               00000001
+SCKP                              00000004
+SCL                               00000001
+SCS0                              00000000
+SCS1                              00000001
+SDA                               00000002
+SDAHT                             00000003
+SDI                               00000002
+SDO1SEL                           00000006
+SDOSEL                            00000006
+SEN                               00000000
+SENDB                             00000003
+SMP                               00000007
+SP1BRG                            0000019B
+SP1BRGH                           0000019C
+SP1BRGL                           0000019B
+SPBRG                             0000019B
+SPBRGH                            0000019C
+SPBRGL                            0000019B
+SPEN                              00000007
+SPLLEN                            00000007
+SRCLK0                            00000004
+SRCLK1                            00000005
+SRCLK2                            00000006
+SRCON0                            0000011A
+SRCON1                            0000011B
+SREN                              00000005
+SRI                               00000001
+SRLEN                             00000007
+SRNQ                              00000005
+SRNQEN                            00000002
+SRPR                              00000000
+SRPS                              00000001
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SRQ                               00000002
+SRQEN                             00000003
+SRRC1E                            00000000
+SRRCKE                            00000002
+SRRPE                             00000003
+SRSC1E                            00000004
+SRSCKE                            00000006
+SRSPE                             00000007
+SS1SEL                            00000005
+SSP1ADD                           00000212
+SSP1BUF                           00000211
+SSP1CON1                          00000215
+SSP1CON2                          00000216
+SSP1CON3                          00000217
+SSP1IE                            00000003
+SSP1IF                            00000003
+SSP1MSK                           00000213
+SSP1STAT                          00000214
+SSPADD                            00000212
+SSPBUF                            00000211
+SSPCON                            00000215
+SSPCON1                           00000215
+SSPCON2                           00000216
+SSPCON3                           00000217
+SSPEN                             00000005
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPMSK                            00000213
+SSPOV                             00000006
+SSPSTAT                           00000214
+SSSEL                             00000005
+STATUS                            00000003
+STATUS_SHAD                       00000FE4
+STKOVF                            00000007
+STKPTR                            00000FED
+STKUNF                            00000006
+STR1A                             00000000
+STR1B                             00000001
+STR1C                             00000002
+STR1D                             00000003
+STR1SYNC                          00000004
+SWDTEN                            00000000
+SYNC                              00000004
+T0CKI                             00000002
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T0XCS                             00000000
+T1CKI                             00000005
+T1CKPS0                           00000004
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T1CKPS1                           00000005
+T1CON                             00000018
+T1GCON                            00000019
+T1GGO                             00000003
+T1GGO_NOT_DONE                    00000003
+T1GPOL                            00000006
+T1GSEL                            00000003
+T1GSPM                            00000004
+T1GSS0                            00000000
+T1GSS1                            00000001
+T1GTM                             00000005
+T1GVAL                            00000002
+T1OSCEN                           00000003
+T1OSCR                            00000007
+T1OSI                             00000005
+T1OSO                             00000004
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             0000001C
+T2OUTPS0                          00000003
+T2OUTPS1                          00000004
+T2OUTPS2                          00000005
+T2OUTPS3                          00000006
+TMR0                              00000015
+TMR0CS                            00000005
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR0SE                            00000004
+TMR1                              00000016
+TMR1CS0                           00000006
+TMR1CS1                           00000007
+TMR1GE                            00000007
+TMR1GIE                           00000007
+TMR1GIF                           00000007
+TMR1H                             00000017
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             00000016
+TMR1ON                            00000000
+TMR2                              0000001A
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOSH                              00000FEF
+TOSL                              00000FEE
+TRISA                             0000008C
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRMT                              00000001
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TSEN                              00000005
+TSRNG                             00000004
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TUN5                              00000005
+TX9                               00000006
+TX9D                              00000000
+TXCKSEL                           00000002
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             0000019A
+TXSTA                             0000019E
+UA                                00000001
+W                                 00000000
+WCOL                              00000007
+WDTCON                            00000097
+WDTPS0                            00000001
+WDTPS1                            00000002
+WDTPS2                            00000003
+WDTPS3                            00000004
+WDTPS4                            00000005
+WPUA                              0000020C
+WPUA0                             00000000
+WPUA1                             00000001
+WPUA2                             00000002
+WPUA3                             00000003
+WPUA4                             00000004
+WPUA5                             00000005
+WR                                00000001
+WREG                              00000009
+WREG_SHAD                         00000FE5
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+Z                                 00000002
+Z_SHAD                            00000002
+_BOREN_NSLEEP                     00003DFF
+_BOREN_OFF                        000039FF
+_BOREN_ON                         00003FFF
+_BOREN_SBODEN                     00003BFF
+_BORV_19                          00003FFF
+_BORV_HI                          00003BFF
+_BORV_LO                          00003FFF
+_CLKOUTEN_OFF                     00003FFF
+_CLKOUTEN_ON                      000037FF
+_CONFIG1                          00008007
+_CONFIG2                          00008008
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+MPASM 5.71  /HOME/GARTHMADDEN/PIC_CODE/ADC_L   1-26-2017  21:48:44         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CP_OFF                           00003FFF
+_CP_ON                            00003F7F
+_DEVID1                           00008006
+_FCMEN_OFF                        00001FFF
+_FCMEN_ON                         00003FFF
+_FOSC_ECH                         00003FFF
+_FOSC_ECL                         00003FFD
+_FOSC_ECM                         00003FFE
+_FOSC_EXTRC                       00003FFB
+_FOSC_HS                          00003FFA
+_FOSC_INTOSC                      00003FFC
+_FOSC_LP                          00003FF8
+_FOSC_XT                          00003FF9
+_IDLOC0                           00008000
+_IDLOC1                           00008001
+_IDLOC2                           00008002
+_IDLOC3                           00008003
+_IESO_OFF                         00002FFF
+_IESO_ON                          00003FFF
+_LVP_OFF                          00001FFF
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FBF
+_MCLRE_ON                         00003FFF
+_PLLEN_OFF                        00003EFF
+_PLLEN_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FDF
+_STVREN_OFF                       00003DFF
+_STVREN_ON                        00003FFF
+_WDTE_NSLEEP                      00003FF7
+_WDTE_OFF                         00003FE7
+_WDTE_ON                          00003FFF
+_WDTE_SWDTEN                      00003FEF
+_WRT_ALL                          00003FFC
+_WRT_BOOT                         00003FFE
+_WRT_HALF                         00003FFD
+_WRT_OFF                          00003FFF
+__12LF1822                        00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
